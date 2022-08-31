@@ -23,7 +23,7 @@ mesh = SubResource("1")
 transform = Transform3D(0.260222, -0.0891215, -5.32907e-15, 0.228941, 0.101299, 0, 0, 0, 0.157287, -1.40761, -0.108905, -2.62802e-08)
 mesh = SubResource("1")
 
-[node name="Muzzle" type="Marker3D" parent="."]
+[node name="Muzzle" type="Node3D" parent="."]
 transform = Transform3D(0.000157074, 0, -1, 0, 1, 0, 1, 0, 0.000157074, -1.61117, 0, 6.8556e-08)
 
 [node name="Timer" type="Timer" parent="."]
