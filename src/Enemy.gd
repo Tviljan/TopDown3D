@@ -18,6 +18,8 @@ func update_target_location(target_location):
 	
 
 func _ready():
+	#this is required to make things move
+	nav_agent.avoidance_enabled = true
 	# connect nav agent signal callback functions
 	nav_agent.path_changed.connect(character_path_changed)
 	nav_agent.target_reached.connect(character_target_reached_reached)
