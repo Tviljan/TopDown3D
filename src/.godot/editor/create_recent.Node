@@ -1,0 +1,7 @@
+CharacterBody3D
+Node3D
+NavigationAgent3D
+RigidBody3D
+RayCast3D
+NavigationRegion3D
+CollisionShape3D

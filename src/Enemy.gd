@@ -1,14 +1,20 @@
 extends CharacterBody3D
 
-@export var speed = 3.0
+@export var speed = 12.0
 @export var gravity = 1.0
-@onready var nav_agent : NavigationAgent3D = $"NavigationAgent3D"
+@onready var nav_agent : NavigationAgent3D = $"NavigationAgent3d"
+@onready var raycast : RayCast3D = $"RayCast3d"
 var next_nav_position : Vector3 
 var movement_delta : float
+var target
 
 func update_target_location(target_location):
 	print("update target", target_location)
+	target = target_location
+	nav_agent
 	nav_agent.set_target_location(target_location)
+	var distance = nav_agent.distance_to_target()
+	print("distance", distance)
 	
 
 func _ready():
@@ -19,21 +25,15 @@ func _ready():
 	nav_agent.velocity_computed.connect(enemy_velocity_computed)
 	
 
-func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-		
-	movement_delta = speed * delta
-	var next_path_position : Vector3 = nav_agent.get_next_location()
-	var current_agent_position : Vector3 = global_transform.origin
-	
-	#print("next_path_position", next_path_position)
-	#print("current_agent_position", current_agent_position)
-	var new_velocity : Vector3 = (next_path_position - current_agent_position).normalized() * movement_delta
-	nav_agent.set_velocity(new_velocity)
-	move_and_slide()
-#	
+func _physics_process(delta):	
+	if nav_agent.is_navigation_finished():
+		return
+	var targetpos = nav_agent.get_next_location()
+	var direction = global_position.direction_to(targetpos)
+	print(direction)
+	var velocity = direction * nav_agent.max_speed
+	nav_agent.set_velocity(velocity)
+
 func character_path_changed() -> void:
 	#print("character_path_changed", nav_agent.get_nav_path())
 	pass
@@ -47,11 +47,5 @@ func character_navigation_finished() -> void:
 	pass
 	
 func enemy_velocity_computed(safe_velocity : Vector3) -> void:
-	pass
-	# check if nav agent target is reached
-#	if !nav_agent.is_target_reached():
-#		# move and slide with the new calculated velocity
-#		move_and_slide()
-#	else:
-#		# if reached target, stand at the closest point in the navigation map
-#		global_transform.origin = NavigationServer3D.map_get_closest_point(nav_agent.get_navigation_map(), global_transform.origin)
+	velocity = safe_velocity
+	move_and_slide()
