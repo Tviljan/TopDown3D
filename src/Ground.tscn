@@ -1,8 +1,27 @@
-[gd_scene format=3 uid="uid://oah241t1en8r"]
+[gd_scene load_steps=2 format=3 uid="uid://oah241t1en8r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ba4ln"]
+albedo_color = Color(0.466667, 0.388235, 0.517647, 1)
 
 [node name="Ground" type="Node3D"]
 
-[node name="CSGBox" type="CSGBox3D" parent="."]
-transform = Transform3D(5.74327, 0, 0, 0, 0.39184, 0, 0, 0, 6.65836, 0, -0.195649, 0)
+[node name="CsgSphere3d2" type="CSGSphere3D" parent="."]
+transform = Transform3D(5.74327, 0, 0, 0, 0.39184, 0, 0, 0, 6.65836, 0, -0.07347, 0)
+operation = 2
+snap = 1.0
 use_collision = true
-size = Vector3(2.16991, 1, 1.79334)
+radius = 5.0
+material = SubResource("StandardMaterial3D_ba4ln")
+
+[node name="CSGBox" type="CSGBox3D" parent="."]
+transform = Transform3D(2.588, 0, 0, 0, 0.177, 0, 0, 0, 3, 0, -0.195649, 0)
+snap = 1.0
+use_collision = true
+size = Vector3(50, 1, 50)
+
+[node name="CsgSphere3d" type="CSGSphere3D" parent="."]
+operation = 2
+snap = 1.0
+use_collision = true
+radius = 5.0
+material = SubResource("StandardMaterial3D_ba4ln")

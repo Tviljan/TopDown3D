@@ -2,23 +2,27 @@ extends CharacterBody3D
 
 @onready var gun_controller =$GunController
 
-var speed = 500
+var speed = 25
 
 func _physics_process(delta):
 	
 	#movement
 	velocity = Vector3.ZERO
-	
+		# Add the gravity.
+	if not is_on_floor():
+		velocity.y -= 100 * delta
+		
 	if Input.is_action_pressed("ui_right"):
-		velocity.x += 1
+		rotate_y(-0.1)
 	if Input.is_action_pressed("ui_left"):
-		velocity.x -= 1	
+		rotate_y(0.1)	
 	if Input.is_action_pressed("ui_up"):
-		velocity.z -= 1
+		var forward_direction= -global_transform.basis.z.normalized()
+		global_translate(forward_direction * speed * delta)
 	if Input.is_action_pressed("ui_down"):
-		velocity.z += 1
-	
-	velocity = velocity.normalized() * speed * delta
+		var forward_direction= global_transform.basis.z.normalized()
+		global_translate(forward_direction * speed * delta)
+
 	move_and_slide()
 
 	#shoot

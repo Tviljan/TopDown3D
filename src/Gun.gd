@@ -10,7 +10,7 @@ var can_shoot = true
 func _ready():
 	rof_timer.wait_time = millis_between_shots/1000.0
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	pass
 	
 func shoot():
