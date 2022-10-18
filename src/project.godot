@@ -8,6 +8,16 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "Node",
+"class": &"Stats",
+"language": &"GDScript",
+"path": "res://Stats.gd"
+}]
+_global_script_class_icons={
+"Stats": ""
+}
+
 [application]
 
 config/name="TopDown3D"

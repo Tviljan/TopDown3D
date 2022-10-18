@@ -13,9 +13,9 @@ func _physics_process(delta):
 		velocity.y -= 100 * delta
 		
 	if Input.is_action_pressed("ui_right"):
-		rotate_y(-0.1)
+		rotate_y(-0.05)
 	if Input.is_action_pressed("ui_left"):
-		rotate_y(0.1)	
+		rotate_y(0.05)	
 	if Input.is_action_pressed("ui_up"):
 		var forward_direction= -global_transform.basis.z.normalized()
 		global_translate(forward_direction * speed * delta)

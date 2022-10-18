@@ -32,16 +32,12 @@ func _ready():
 	
 
 func _physics_process(delta):	
+	
 	var next_path_position : Vector3 = nav_agent.get_next_location()
 	var current_agent_position : Vector3 = global_transform.origin
 	var new_velocity : Vector3 = (next_path_position - current_agent_position).normalized() * speed
 	nav_agent.set_velocity(new_velocity)
-#
-#	var targetpos = nav_agent.get_next_location()
-#	var direction = global_position.direction_to(targetpos)
-#	print(direction)
-#	velocity = direction * nav_agent.max_speed
-#	nav_agent.set_velocity(velocity)
+
 
 func character_path_changed() -> void:
 	#print("character_path_changed", nav_agent.get_nav_path())
@@ -60,3 +56,11 @@ func enemy_velocity_computed(safe_velocity : Vector3) -> void:
 	velocity = safe_velocity
 	
 	move_and_slide()
+
+
+func _on_collision_shape_child_entered_tree(node):
+	print("Child entered") # Replace with function body.
+
+
+func _on_stats_death_signal():
+	queue_free()

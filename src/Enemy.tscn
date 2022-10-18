@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpor6qshshx10"]
+[gd_scene load_steps=6 format=3 uid="uid://bmdnf41l2gq8"]
 
 [ext_resource type="Script" path="res://Enemy.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://b20odgibh8yck" path="res://Stats.tscn" id="2_tw1aa"]
 
 [sub_resource type="StandardMaterial3D" id="1"]
 albedo_color = Color(0.12549, 0.333333, 0.121569, 1)
@@ -24,3 +25,7 @@ shape = SubResource("3")
 [node name="NavigationAgent3d" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
 max_speed = 5.0
+
+[node name="Stats" parent="." instance=ExtResource("2_tw1aa")]
+
+[connection signal="death_signal" from="Stats" to="." method="_on_stats_death_signal"]
