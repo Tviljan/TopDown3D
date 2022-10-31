@@ -32,7 +32,6 @@ navmesh = SubResource("NavigationMesh_ekeqw")
 [node name="Ground" parent="NavigationRegion3d" instance=ExtResource("6")]
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
-wait_time = 3.0
 autostart = true
 
 [node name="SpawnPoints" type="Marker3D" parent="."]
