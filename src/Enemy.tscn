@@ -1,21 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmdnf41l2gq8"]
+[gd_scene load_steps=6 format=3 uid="uid://bmdnf41l2gq8"]
 
 [ext_resource type="Script" path="res://Enemy.gd" id="1"]
-[ext_resource type="CapsuleMesh" uid="uid://btt28qgfok5mq" path="res://EnemyMesh.tres" id="2_ojse0"]
+[ext_resource type="PackedScene" uid="uid://bueitau6u4cs8" path="res://robotEnemy.tscn" id="2_d0fkq"]
 [ext_resource type="PackedScene" uid="uid://b20odgibh8yck" path="res://Stats.tscn" id="2_tw1aa"]
+[ext_resource type="PackedScene" uid="uid://byxb67dsyn7ei" path="res://Bullet.tscn" id="3_nnvnu"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_icd1r"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c83if"]
 
 [node name="Enemy" type="CharacterBody3D"]
 script = ExtResource("1")
-defaultMesh = ExtResource("2_ojse0")
 
-[node name="MeshInstance" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.778134, 4.17934e-08, 0.628099, 8.74228e-08, 1, -1.74845e-07, -0.628099, 1.90963e-07, 0.778134, 4.82585e-09, 1.00547, -0.043)
+[node name="robotcharacter" parent="." instance=ExtResource("2_d0fkq")]
+transform = Transform3D(0.003, 0, 0, 0, 0.003, 0, 0, 0, 0.003, 0, 0, 0)
+
+[node name="Bullet" parent="." instance=ExtResource("3_nnvnu")]
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(-0.778134, -1.0982e-07, -0.628099, 0, 1, -1.74846e-07, 0.628099, -1.36053e-07, -0.778134, 0.0129666, 1.00595, -0.0432952)
-shape = SubResource("CapsuleShape3D_icd1r")
+shape = SubResource("CapsuleShape3D_c83if")
 
 [node name="NavigationAgent3d" type="NavigationAgent3D" parent="."]
 path_desired_distance = 1.5

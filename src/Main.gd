@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var Player :CharacterBody3D = $Player
+@onready var Camera : Camera3D = $Camera
 @onready var timer : Timer = $EnemySpawnTimer
 
 @export var enemy_scene: PackedScene = preload("res://Enemy.tscn")
@@ -11,6 +12,8 @@ func _ready():
 	spawn_points = get_tree().get_nodes_in_group("spawn_point")
 	
 func _player_killed():
+	Player == null
+	Camera.Player = null
 	timer.stop()
 	
 func _on_enemy_spawn_timer_timeout():
@@ -29,4 +32,3 @@ func _on_enemy_spawn_timer_timeout():
 	add_child(mob)
 	if (Player != null):
 		mob.update_target(Player)
-#	print('added')

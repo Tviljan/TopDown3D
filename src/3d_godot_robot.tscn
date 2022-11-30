@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfl3hpfpmu07t"]
+
+[ext_resource type="PackedScene" uid="uid://dx1uil2ds5xl5" path="res://3DGodotRobot.glb" id="1_nnnxn"]
+
+[node name="3DGodotRobot" instance=ExtResource("1_nnnxn")]
+
+[node name="Skeleton3D" parent="RobotArmature" index="0"]
+bones/0/position = Vector3(-3.5256e-16, 0.861288, 0.0298551)
+bones/0/rotation = Quaternion(0.0149092, 1.19196e-07, 1.77731e-09, 0.999889)
+bones/1/rotation = Quaternion(0.0294489, -1.52167e-14, 7.02117e-09, 0.999566)
+bones/4/position = Vector3(-3.65722e-16, 0.151501, -0.011741)
+bones/4/rotation = Quaternion(0.00540027, -1.19208e-07, -6.43763e-10, 0.999985)
+bones/8/position = Vector3(9.97907e-08, 0.0611572, 0.418552)
+bones/9/rotation = Quaternion(-0.523067, -0.457802, -0.521926, 0.49438)
+bones/10/rotation = Quaternion(-0.356441, 0.617847, -0.433107, 0.551029)
+bones/13/rotation = Quaternion(-0.523067, 0.457802, 0.521926, 0.49438)
+bones/14/rotation = Quaternion(-0.356441, -0.617847, 0.433107, 0.551029)
+bones/16/enabled = false
+bones/17/rotation = Quaternion(0.991415, 0.0203396, -0.00748625, 0.128945)
+bones/18/rotation = Quaternion(0.249628, 0.00871771, 0.024974, 0.967981)
+bones/19/rotation = Quaternion(-0.608714, 0.00331542, -0.00479121, 0.793369)
+bones/21/rotation = Quaternion(0.991415, -0.0203396, 0.00748626, 0.128945)
+bones/22/rotation = Quaternion(0.249628, -0.00871766, -0.0249741, 0.967981)
+bones/23/rotation = Quaternion(-0.608714, -0.00331544, 0.00479126, 0.793369)
+
+[node name="AnimationPlayer" parent="." index="1"]
+playback_process_mode = 0

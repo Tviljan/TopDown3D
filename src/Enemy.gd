@@ -7,8 +7,9 @@ var target_object : Node3D
 var movement_delta : float
 var target_location
 const gravity = 8
+
+@onready var robotAnimation : AnimationPlayer = $"robotcharacter/AnimationPlayer"
 @onready var meshInstance : MeshInstance3D = $"MeshInstance"
-@onready @export var defaultMesh  : Resource = load("res://EnemyMesh.tres")
 @onready @export var explosion : PackedScene = load("res://Explosion.tscn")
 
 
@@ -30,7 +31,6 @@ func update_target(target: CharacterBody3D):
 
 func _ready():
 	print("start ready")
-	meshInstance.mesh = defaultMesh 
 	#this is required to make things move
 	#animationPlayder.current_animation = "[stop]"
 	nav_agent.avoidance_enabled = true
@@ -44,6 +44,7 @@ func _ready():
 	
 
 func _physics_process(delta):	
+	robotAnimation.play("Armature|walking")
 	if not nav_agent.is_target_reachable():
 		explode()
 		return
@@ -51,6 +52,7 @@ func _physics_process(delta):
 	var next_path_position : Vector3 = nav_agent.get_next_location()
 	var current_agent_position : Vector3 = global_transform.origin
 	var new_velocity : Vector3 = (next_path_position - current_agent_position).normalized() * speed
+	look_at_from_position(current_agent_position, next_path_position, Vector3.UP)
 	nav_agent.set_velocity(new_velocity)
 
 

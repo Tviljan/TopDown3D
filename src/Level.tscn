@@ -15,9 +15,6 @@ script/source = "extends Camera3D
 var offset : Vector3
 var target
 
-func _init():
-	pass
-
 func _ready():
 	offset = get_global_transform().origin
 	target = Player.get_global_transform().origin
