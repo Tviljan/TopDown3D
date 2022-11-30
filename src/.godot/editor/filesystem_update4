@@ -1,12 +1,11 @@
+res://Player.tscn
 res://Enemy.gd
-res://EnemyMesh.tres
 res://Player.gd
 res://ExplosionMesh.tres
-res://Enemy.tscn
 res://Level.tscn
+res://Enemy.tscn
 res://Explosion.tscn
-res://Player.tscn
 res://Bullet.tscn
-res://3d_godot_robot.tscn
-res://robot.tscn
 res://robotEnemy.tscn
+res://GunController.gd
+res://george.tscn

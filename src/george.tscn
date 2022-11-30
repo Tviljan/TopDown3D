@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://4jqaqvlyd57l"]
+
+[ext_resource type="PackedScene" uid="uid://c0dijp0jsq03f" path="res://George.gltf" id="1_mt1re"]
+
+[node name="George" instance=ExtResource("1_mt1re")]
+
+[node name="Skeleton3D" parent="RobotArmature" index="0"]
+bones/0/position = Vector3(-0.0732467, 0.358495, 3.94795)
+bones/0/rotation = Quaternion(0.147488, -0.0315507, -0.00133839, 0.98856)
+bones/2/rotation = Quaternion(0.114568, -0.00417208, 0.0155612, 0.993285)
+bones/3/rotation = Quaternion(0.147416, -0.00165846, -0.000404045, 0.989073)
+bones/4/rotation = Quaternion(-0.0789682, -0.00221394, 0.00300101, 0.99687)
+bones/6/rotation = Quaternion(-0.22022, 0.259957, -0.643058, 0.685859)
+bones/7/rotation = Quaternion(-0.0370979, -0.767203, -0.111818, 0.630493)
+bones/21/rotation = Quaternion(0.0409343, -0.331327, 0.544905, 0.769172)
+bones/22/rotation = Quaternion(0.0423749, 0.692451, 0.112264, 0.711416)
+bones/24/rotation = Quaternion(-0.54003, -0.330373, 0.0729568, 0.770649)
+bones/25/rotation = Quaternion(-0.15617, -0.0366813, 0.0241832, 0.986753)
+bones/27/rotation = Quaternion(-0.644012, -0.213546, 0.0238273, 0.73422)
+bones/28/rotation = Quaternion(-0.14071, -0.00110504, 0.00479521, 0.990039)
+bones/30/rotation = Quaternion(-0.55722, -0.00338504, -0.0877878, 0.825704)
+bones/31/rotation = Quaternion(-0.146125, 0.00578778, -0.0215849, 0.989014)
+bones/33/rotation = Quaternion(-0.062875, 0.0194089, -0.29434, 0.953433)
+bones/35/rotation = Quaternion(-0.950607, 0.0356415, 0.00419941, 0.308316)
+bones/36/rotation = Quaternion(0.603356, -3.61532e-07, 2.85191e-07, 0.797472)
+bones/37/rotation = Quaternion(-1.44874e-07, 0.846445, -0.532476, 2.58256e-07)
+bones/38/rotation = Quaternion(2.5243e-07, -0.344863, 0.938653, 1.0819e-07)
+bones/39/rotation = Quaternion(-0.95496, 0.0356746, 0.00472716, 0.294543)
+bones/40/rotation = Quaternion(0.636693, 3.47478e-07, -3.0185e-07, 0.771118)
+bones/41/rotation = Quaternion(-1.50916e-07, -0.819994, 0.572372, 2.50713e-07)
+bones/42/rotation = Quaternion(2.5274e-07, 0.344863, -0.938653, 1.10198e-07)
+bones/45/position = Vector3(0.959894, 0.309308, -0.970933)
+bones/45/rotation = Quaternion(0, -0.458265, 0.888816, 0)
+bones/46/position = Vector3(-0.959894, 0.309308, -0.970933)
+bones/46/rotation = Quaternion(0, -0.458265, 0.888816, 0)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="RobotArmature/Skeleton3D" index="1"]
+transform = Transform3D(0.451405, 0.500884, 0.738477, -0.749721, -0.235899, 0.61828, 0.483893, -0.832746, 0.269037, 1.68598, 2.13285, 2.43105)
+bone_name = "PalmR.L"
+bone_idx = 11

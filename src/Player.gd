@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @onready var gun_controller =$GunController
-@onready var robotAnimation : AnimationPlayer = $"3DGodotRobot/AnimationPlayer"
+@onready var robotAnimation : AnimationPlayer = $"George/AnimationPlayer"
 
 var camera : Camera3D
 signal player_killed
@@ -21,15 +21,24 @@ var running = false
 func DeadState(delta):
 	if (!running):
 		running = true
-		robotAnimation.play("Hurt")
-		
+		robotAnimation.play("Death")
+
+var fallingAnimationShown = false
 func FallingState(delta):
 	velocity.y -= 150 * delta
-	robotAnimation.play("Fall")
+	if fallingAnimationShown == false:
+		robotAnimation.play("Jump")
+		fallingAnimationShown = true
+	else:		
+		robotAnimation.play("Idle")
 		
+
 func ActionState(delta):	
-	if (Input.is_anything_pressed()):
-		robotAnimation.play("Run")
+	if Input.is_anything_pressed():
+		if Input.is_action_pressed("primary_action"):
+			robotAnimation.play("Run_Holding")
+		else:
+			robotAnimation.play("Run")
 	else:
 		robotAnimation.play("Idle")
 		
@@ -47,6 +56,7 @@ func ActionState(delta):
 
 	#shoot
 	if Input.is_action_pressed("primary_action"):
+		
 		gun_controller.shoot()
 		
 	

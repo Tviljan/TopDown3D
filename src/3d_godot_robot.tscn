@@ -1,8 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cfl3hpfpmu07t"]
+[gd_scene format=3 uid="uid://bfr3nfftqocw5"]
 
-[ext_resource type="PackedScene" uid="uid://dx1uil2ds5xl5" path="res://3DGodotRobot.glb" id="1_nnnxn"]
-
-[node name="3DGodotRobot" instance=ExtResource("1_nnnxn")]
+[node name="3DGodotRobot"]
 
 [node name="Skeleton3D" parent="RobotArmature" index="0"]
 bones/0/position = Vector3(-3.5256e-16, 0.861288, 0.0298551)

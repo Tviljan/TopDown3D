@@ -73,6 +73,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 12)
 [node name="NavigationRegion3d" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 navmesh = SubResource("NavigationMesh_ekeqw")
+navigation_layers = 4
 
 [node name="Ground" parent="NavigationRegion3d" instance=ExtResource("6")]
 

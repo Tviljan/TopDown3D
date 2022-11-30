@@ -3,14 +3,17 @@ extends Node
 
 
 @export var StartingWeapon : PackedScene
-var hand : Node3D
+var hand : BoneAttachment3D
 var equiped_weapon : Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
-	hand = get_parent().find_child("HandPosition")
-	
+	#get_bone_global_pose
+
+	hand = get_parent().find_child("George").find_child("BoneAttachment3D")
+
+#	bone.add_child(hand)
+#	var d = skeleton.get_bone_global_pose(bone)
 	if (StartingWeapon):
 		equip_weapon(StartingWeapon)
 		
