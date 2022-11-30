@@ -25,6 +25,10 @@ run/main_scene="res://Level.tscn"
 config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
 
+[dotnet]
+
+project/assembly_name="TopDown3D"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
