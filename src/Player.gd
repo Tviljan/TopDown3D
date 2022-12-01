@@ -96,5 +96,5 @@ func _on_gun_controller_tree_entered():
 
 
 func _on_area_3d_area_entered(area):
-	#Kill()
-	pass
+	Kill()
+
