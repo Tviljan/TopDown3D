@@ -1,7 +1,7 @@
 extends Area3D
 
-@export var speed = 70
-const KILL_TIME = 0.5
+@export var speed = 60
+const KILL_TIME = 1
 var timer = 0
 
 func _physics_process(delta):
@@ -13,7 +13,7 @@ func _physics_process(delta):
 		queue_free()
 		
 
-func _on_body_entered(body: Node):
+func _on_body_entered(body):
 	print("area entered", body)
 	queue_free() # Replace with function body..
 

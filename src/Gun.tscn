@@ -6,14 +6,17 @@
 [sub_resource type="BoxMesh" id="1"]
 
 [node name="Gun" type="Node3D"]
-transform = Transform3D(-4.25503e-08, 0, -1, 0, 1, 0, 0.973437, 0, -4.37114e-08, 0, 0, 0.725425)
+transform = Transform3D(0.442247, 0.52705, -0.688015, -0.745361, 0.625432, 0, 0.442247, 0.52705, 0.688015, 0, 0, 0)
 script = ExtResource("1")
 Bullet = ExtResource("2")
 millis_between_shots = 200
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.897236, 0, 0, 0, 0.142842, 0, -3.55271e-15, 0, 0.16652, -1.16463, 0, -7.10543e-15)
+transform = Transform3D(0.897236, 7.45058e-09, 0, 0, 0.142842, 0, 0, 0, 0.16652, -1.16463, 0, 0)
 mesh = SubResource("1")
+
+[node name="Muzzle" type="Marker3D" parent="MeshInstance"]
+transform = Transform3D(0.000175064, 0, -1.11453, -2.38419e-07, 7.00074, 0, 6.00528, 0, 0.000943274, -0.497684, -2.38419e-07, 4.76837e-07)
 
 [node name="MeshInstance2" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.213191, -0.108299, -1.33227e-15, 0.273275, -0.0844879, 0, 0, 0, 0.157287, -0.720214, -0.153582, 0.000331402)
@@ -22,9 +25,6 @@ mesh = SubResource("1")
 [node name="MeshInstance3" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.260222, -0.0891215, -5.32907e-15, 0.228941, 0.101299, 0, 0, 0, 0.157287, -1.40761, -0.108905, -2.62802e-08)
 mesh = SubResource("1")
-
-[node name="Muzzle" type="Marker3D" parent="."]
-transform = Transform3D(0.000157074, 0, -1, 0, 1, 0, 1, 0, 0.000157074, -1.61117, 0, 6.8556e-08)
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

@@ -61,13 +61,14 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_qy7a5"]
 
 [node name="Explosion" type="Area3D"]
-collision_layer = 4
-collision_mask = 4
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_64lfx")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
 transparency = 1.0
+cast_shadow = 0
 mesh = ExtResource("2_kubsp")
 skeleton = NodePath("../AnimationPlayer")
 

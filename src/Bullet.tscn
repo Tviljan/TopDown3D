@@ -1,27 +1,45 @@
-[gd_scene load_steps=5 format=3 uid="uid://byxb67dsyn7ei"]
+[gd_scene load_steps=8 format=3 uid="uid://byxb67dsyn7ei"]
 
 [ext_resource type="Script" path="res://Bullet.gd" id="1"]
 
-[sub_resource type="StandardMaterial3D" id="1"]
-albedo_color = Color(0.172549, 0.133333, 0.133333, 1)
+[sub_resource type="Gradient" id="Gradient_68cww"]
 
-[sub_resource type="BoxMesh" id="2"]
-material = SubResource("1")
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1bqon"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nxxkk"]
+color_ramp = SubResource("Gradient_68cww")
+noise = SubResource("FastNoiseLite_1bqon")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5t6v"]
+albedo_color = Color(1, 1, 0, 1)
+albedo_texture = SubResource("NoiseTexture2D_nxxkk")
+
+[sub_resource type="SphereMesh" id="SphereMesh_wdeuu"]
+material = SubResource("StandardMaterial3D_m5t6v")
+radius = 1.841
+height = 3.0
+radial_segments = 4
 
 [sub_resource type="BoxShape3D" id="3"]
 size = Vector3(0.409654, 0.409588, 0.96231)
 
 [node name="Bullet" type="Area3D"]
-collision_layer = 2
-collision_mask = 2
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("1")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-mesh = SubResource("2")
+mesh = SubResource("SphereMesh_wdeuu")
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.493712, 0, 0, 0, 0.493791, 0, 0, 0, 0.204375, 0, 0, 0)
 shape = SubResource("3")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 1, 0, 1)
+light_energy = 2.413
+light_size = 0.145
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

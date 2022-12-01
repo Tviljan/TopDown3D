@@ -73,7 +73,7 @@ func character_target_reached_reached() -> void:
 		update_target(target_object)
 	
 func character_navigation_finished() -> void:	
-	if (target_object == null):
+	if target_object == null or not nav_agent.is_target_reachable():
 		explode()
 		return
 #	var s = target_object.global_position - self.global_position
@@ -89,10 +89,6 @@ func enemy_velocity_computed(safe_velocity : Vector3) -> void:
 	velocity = safe_velocity
 	
 	move_and_slide()
-
-
-func _on_collision_shape_child_entered_tree(node):
-	print("Child entered") # Replace with function body.
 
 func explode():
 	#meshInstance.mesh = explosionMesh
@@ -110,3 +106,14 @@ func explode():
 	
 func _on_stats_death_signal():
 	explode()
+
+
+func _on_collision_shape_child_entered_tree(node):
+	pass
+
+
+func _on_stats_hit_signal():
+	$GPUParticles3D.emitting = true
+	nav_agent.max_speed -= 1
+	robotAnimation.play("Armature|attackspin")
+	

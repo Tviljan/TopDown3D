@@ -1,7 +1,5 @@
 extends Node
 
-
-
 @export var StartingWeapon : PackedScene
 var hand : BoneAttachment3D
 var equiped_weapon : Node3D
@@ -11,7 +9,7 @@ func _ready():
 	#get_bone_global_pose
 
 	hand = get_parent().find_child("George").find_child("BoneAttachment3D")
-
+	
 #	bone.add_child(hand)
 #	var d = skeleton.get_bone_global_pose(bone)
 	if (StartingWeapon):

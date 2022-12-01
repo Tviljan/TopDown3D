@@ -32,3 +32,7 @@ func _on_enemy_spawn_timer_timeout():
 	add_child(mob)
 	if (Player != null):
 		mob.update_target(Player)
+
+
+func _on_player_player_killed():
+	$Camera/Label3D.visible = true # Replace with function body.

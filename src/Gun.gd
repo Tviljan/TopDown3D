@@ -13,17 +13,19 @@ func _ready():
 func _physics_process(_delta):
 	pass
 	
+	
 func shoot():
 	if can_shoot:
+		rof_timer.start()
 		var newBullet = Bullet.instantiate()
-		newBullet.global_transform = $Muzzle.global_transform
+		newBullet.global_transform = $MeshInstance/Muzzle.global_transform
+		newBullet.scale = Vector3(1, 1.25, 1)
 		newBullet.speed = muzzle_speed
 
 		var scene_root = get_tree().root.get_children()[0]
 		scene_root.add_child(newBullet)
 		#print("pew!")
 		can_shoot = false
-		rof_timer.start()
 		
 
 
