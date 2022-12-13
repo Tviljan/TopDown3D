@@ -19,7 +19,7 @@ func shoot():
 		rof_timer.start()
 		var newBullet = Bullet.instantiate()
 		newBullet.global_transform = $MeshInstance/Muzzle.global_transform
-		newBullet.scale = Vector3(1, 1.25, 1)
+		newBullet.scale = Vector3(1, 1.2, 1)
 		newBullet.speed = muzzle_speed
 
 		var scene_root = get_tree().root.get_children()[0]

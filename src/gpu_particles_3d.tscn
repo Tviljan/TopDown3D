@@ -1,14 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://l6mb5twdspem"]
+[gd_scene load_steps=7 format=3 uid="uid://l6mb5twdspem"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ld823"]
+
+[sub_resource type="Gradient" id="Gradient_3at2g"]
+offsets = PackedFloat32Array(0, 0.205686, 0.707358, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.959866, 0.959866, 0.959866, 1, 0.98006, 0.98006, 0.98006, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_t8stq"]
+gradient = SubResource("Gradient_3at2g")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gxldc"]
-emission_shape = 6
-emission_ring_axis = Vector3(0, 0, 1)
-emission_ring_height = 1.0
-emission_ring_radius = 1.0
-emission_ring_inner_radius = 0.0
-gravity = Vector3(0, 9.8, 0)
+emission_shape = 2
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 6, 0)
 scale_min = 0.2
 scale_max = 0.6
+color_ramp = SubResource("GradientTexture1D_t8stq")
+color_initial_ramp = SubResource("GradientTexture1D_ld823")
+hue_variation_min = 0.81
+hue_variation_max = 0.84
+turbulence_enabled = true
+sub_emitter_keep_velocity = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f1f6m"]
 albedo_color = Color(1, 1, 0, 1)
@@ -24,8 +36,8 @@ height = 0.2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3239, 0)
 emitting = false
 lifetime = 1.77
-one_shot = true
-speed_scale = 5.55
-explosiveness = 0.52
+preprocess = 0.1
+speed_scale = 2.16
+randomness = 0.16
 process_material = SubResource("ParticleProcessMaterial_gxldc")
 draw_pass_1 = SubResource("SphereMesh_t8d3i")

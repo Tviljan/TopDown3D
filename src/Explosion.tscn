@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bm5wth4lrw2lh"]
+[gd_scene load_steps=10 format=3 uid="uid://bm5wth4lrw2lh"]
 
 [ext_resource type="Script" path="res://Explosion.gd" id="1_64lfx"]
 [ext_resource type="SphereMesh" uid="uid://cxnasl4nw873f" path="res://ExplosionMesh.tres" id="2_kubsp"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qy7a5"]
 
 [sub_resource type="Animation" id="Animation_d5ini"]
 length = 0.001
@@ -20,13 +22,14 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_bepot"]
 resource_name = "explosion"
+loop_mode = 2
 tracks/0/type = "scale_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("MeshInstance")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 1, 1, 6, 6, 6)
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.8, 1, 6, 6, 6)
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
@@ -34,7 +37,7 @@ tracks/1/path = NodePath("MeshInstance:transparency")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 1.0]
@@ -46,7 +49,7 @@ tracks/2/path = NodePath("CollisionShape3D:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.8),
+"times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(6, 6, 6)]
@@ -58,7 +61,29 @@ _data = {
 "explosion": SubResource("Animation_bepot")
 }
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_qy7a5"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qyrvj"]
+lifetime_randomness = 0.11
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, 20, 0)
+spread = 90.0
+flatness = 0.2
+gravity = Vector3(0, -8, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+linear_accel_min = 2.9
+linear_accel_max = 2.91
+scale_max = 2.0
+color = Color(1, 0.741176, 0.498039, 1)
+hue_variation_max = 0.14
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwfsh"]
+albedo_color = Color(0.113725, 0.0823529, 0.0666667, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_d821e"]
+material = SubResource("StandardMaterial3D_dwfsh")
+radius = 0.1
+height = 0.1
 
 [node name="Explosion" type="Area3D"]
 collision_layer = 2
@@ -72,13 +97,26 @@ cast_shadow = 0
 mesh = ExtResource("2_kubsp")
 skeleton = NodePath("../AnimationPlayer")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shape = SubResource("SphereShape3D_qy7a5")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_g7s3f")
 }
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-shape = SubResource("SphereShape3D_qy7a5")
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0766392, -0.0406606, -0.00490284)
+cast_shadow = 0
+emitting = false
+amount = 32
+lifetime = 1.8
+one_shot = true
+speed_scale = 2.08
+explosiveness = 0.23
+randomness = 0.04
+process_material = SubResource("ParticleProcessMaterial_qyrvj")
+draw_pass_1 = SubResource("SphereMesh_d821e")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

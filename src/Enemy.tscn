@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://l6mb5twdspem" path="res://gpu_particles_3d.tscn" id="2_nf0gi"]
 [ext_resource type="PackedScene" uid="uid://b20odgibh8yck" path="res://Stats.tscn" id="2_tw1aa"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oxfnw"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gnyut"]
 
 [node name="Enemy" type="CharacterBody3D"]
 collision_layer = 4
@@ -13,7 +13,6 @@ script = ExtResource("1")
 
 [node name="GPUParticles3D" parent="." instance=ExtResource("2_nf0gi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30103, 0)
-one_shot = false
 randomness = 0.27
 
 [node name="robotcharacter" parent="." instance=ExtResource("2_d0fkq")]
@@ -21,7 +20,7 @@ transform = Transform3D(0.003, 0, 0, 0, 0.003, 0, 0, 0, 0.003, 0, 0, 0)
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(-0.778134, -1.0982e-07, -0.628099, 0, 1, -1.74846e-07, 0.628099, -1.36053e-07, -0.778134, 0.0129666, 1.00595, -0.0432952)
-shape = SubResource("CapsuleShape3D_oxfnw")
+shape = SubResource("CapsuleShape3D_gnyut")
 
 [node name="NavigationAgent3d" type="NavigationAgent3D" parent="."]
 path_desired_distance = 1.5
