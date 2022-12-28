@@ -7,6 +7,7 @@ var target_object : Node3D
 var movement_delta : float
 var target_location
 const gravity = 8
+signal enemy_hit
 
 @onready var robotAnimation : AnimationPlayer = $"robotcharacter/AnimationPlayer"
 @onready var meshInstance : MeshInstance3D = $"MeshInstance"
@@ -16,7 +17,6 @@ const gravity = 8
 func update_target(target: CharacterBody3D):
 	target_object= target
 	target_location = target.global_transform.origin
-	#print("update target", target_location)
 	if nav_agent:
 		nav_agent.distance_to_target()
 		nav_agent.set_target_location(target_location)
@@ -32,7 +32,6 @@ func update_target(target: CharacterBody3D):
 func _ready():
 	print("start ready")
 	#this is required to make things move
-	#animationPlayder.current_animation = "[stop]"
 	nav_agent.avoidance_enabled = true
 	# connect nav agent signal callback functions
 	nav_agent.path_changed.connect(character_path_changed)
@@ -40,7 +39,6 @@ func _ready():
 	nav_agent.navigation_finished.connect(character_navigation_finished)
 	nav_agent.velocity_computed.connect(enemy_velocity_computed)
 	nav_agent.max_speed = speed
-	print("end ready")
 	
 
 func _physics_process(delta):	
@@ -115,5 +113,6 @@ func _on_collision_shape_child_entered_tree(node):
 func _on_stats_hit_signal():
 	$GPUParticles3D.emitting = true
 	nav_agent.max_speed -= 1
+	enemy_hit.emit()
 	robotAnimation.play("Armature|attackspin")
 	

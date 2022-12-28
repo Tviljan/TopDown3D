@@ -3,19 +3,17 @@ extends CharacterBody3D
 @onready var gun_controller =$GunController
 @onready var robotAnimation : AnimationPlayer = $"George/AnimationPlayer"
 
-var camera : Camera3D
+@onready var camera : Camera3D = $PlayerCamera
 signal player_killed
 var killed = false
 var speed = 25
-func _ready():
-	camera = get_parent().find_child("Camera")
 	
 func Kill():
-	print("killed")
-	killed = true
-	await get_tree().create_timer(1.0).timeout
-	player_killed.emit()
-	
+	if not killed:
+		await get_tree().create_timer(0.4).timeout
+		killed = true
+		player_killed.emit()
+		
 
 var running = false
 func DeadState(delta):
@@ -27,17 +25,13 @@ var fallingAnimationShown = false
 var fallTime = 0
 var fall_time_limit = 2;
 func FallingState(delta):
-	velocity.y -= 150 * delta
+	velocity.y -= 1400 * delta
 	fallTime += delta
 	
-	if fallingAnimationShown == false:
-		robotAnimation.play("Jump")
-		fallingAnimationShown = true
-	else:		
-		robotAnimation.play("Idle")
+	robotAnimation.play("Jump")
 		
 	if fallTime > fall_time_limit:
-		robotAnimation.play("Hello")
+		robotAnimation.play("Death")
 		await get_tree().create_timer(1).timeout
 		Kill()
 
@@ -68,8 +62,6 @@ func ActionState(delta):
 		else:
 			robotAnimation.play("Idle")
 		
-		
-
 	#shoot
 	if Input.is_action_pressed("primary_action"):
 		await get_tree().create_timer(0.1).timeout
@@ -79,7 +71,7 @@ func ActionState(delta):
 func _physics_process(delta):
 	
 	#movement
-	camera.get_global_transform()
+	#camera.get_global_transform()
 	velocity = Vector3.ZERO
 		# Add the gravity.
 	if not is_on_floor():
