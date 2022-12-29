@@ -8,6 +8,14 @@ signal caught_in_explosion
 func _ready():
 	animationPlayer.play("explosion")
 	$GPUParticles3D.emitting = true
+	
+	var i = randi() % 1
+	if i == 0:
+		print("boom 1")
+		$RobotExplode1.play()
+	else:		
+		print("boom 2")
+		$RobotExplode2.play()
 	await get_tree().create_timer(1.0).timeout	
 	queue_free()
 

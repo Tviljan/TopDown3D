@@ -10,8 +10,8 @@ var speed = 25
 	
 func Kill():
 	if not killed:
-		await get_tree().create_timer(0.4).timeout
 		killed = true
+		await get_tree().create_timer(0.4).timeout
 		player_killed.emit()
 		
 
@@ -37,7 +37,9 @@ func FallingState(delta):
 
 func ActionState(delta):	
 	var moving = false;
-	
+	if killed:
+		return
+		
 	if Input.is_action_pressed("ui_right"):
 		rotate_y(-0.05)
 	if Input.is_action_pressed("ui_left"):
@@ -56,6 +58,13 @@ func ActionState(delta):
 			robotAnimation.play("Run_Holding")
 		else:
 			robotAnimation.play("Run")
+		var i = randi() % 1
+		
+		if not ($Run1.playing or $Run2.playing):
+			if i == 0: 
+				$Run1.play()
+			else:
+				$Run2.play()
 	else:
 		if Input.is_action_pressed("primary_action"):
 			robotAnimation.play("Holding")
@@ -64,7 +73,6 @@ func ActionState(delta):
 		
 	#shoot
 	if Input.is_action_pressed("primary_action"):
-		await get_tree().create_timer(0.1).timeout
 		gun_controller.shoot()
 		
 	

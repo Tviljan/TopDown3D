@@ -18,6 +18,7 @@ func shoot():
 	if can_shoot:
 		rof_timer.start()
 		var newBullet = Bullet.instantiate()
+		$Shoot2.play()
 		newBullet.global_transform = $MeshInstance/Muzzle.global_transform
 		newBullet.scale = Vector3(1, 1.2, 1)
 		newBullet.speed = muzzle_speed

@@ -1,11 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://xpw7mkqjq2sc"]
+[gd_scene load_steps=9 format=3 uid="uid://xpw7mkqjq2sc"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_oypye"]
 [ext_resource type="PackedScene" uid="uid://bw55tfx4572ip" path="res://george.tscn" id="2_4cafa"]
 [ext_resource type="Script" path="res://GunController.gd" id="2_dsc66"]
 [ext_resource type="PackedScene" uid="uid://bhqbr04ay6yg0" path="res://Gun.tscn" id="3_1hbpf"]
+[ext_resource type="AudioStream" uid="uid://b2dvsljrog4ll" path="res://sounds/sci-fi_explosion_01.wav" id="5_yx3yv"]
+[ext_resource type="AudioStream" uid="uid://c42cubxy4bndi" path="res://sounds/footstep_metal_high_run_01.wav" id="7_8gwq4"]
+[ext_resource type="AudioStream" uid="uid://00vbtybnb04m" path="res://sounds/footstep_metal_high_run_02.wav" id="8_agmgs"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iwygk"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ocokm"]
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 3
@@ -17,14 +20,14 @@ transform = Transform3D(-0.35, 0, -3.0598e-08, 0, 0.35, 0, 3.0598e-08, 0, -0.35,
 
 [node name="CollisionShape3d" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_iwygk")
+shape = SubResource("CapsuleShape3D_ocokm")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_mask = 2
 
 [node name="CollisionShape3d" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_iwygk")
+shape = SubResource("CapsuleShape3D_ocokm")
 
 [node name="GunController" type="Node" parent="."]
 script = ExtResource("2_dsc66")
@@ -32,6 +35,15 @@ StartingWeapon = ExtResource("3_1hbpf")
 
 [node name="RayCast3d" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0123243, 0)
+
+[node name="Shoot1" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_yx3yv")
+
+[node name="Run1" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_8gwq4")
+
+[node name="Run2" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_agmgs")
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="tree_entered" from="GunController" to="." method="_on_gun_controller_tree_entered"]

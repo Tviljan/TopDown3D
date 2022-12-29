@@ -1,11 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://bmdnf41l2gq8"]
+[gd_scene load_steps=10 format=3 uid="uid://bmdnf41l2gq8"]
 
 [ext_resource type="Script" path="res://Enemy.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://bueitau6u4cs8" path="res://robotEnemy.tscn" id="2_d0fkq"]
 [ext_resource type="PackedScene" uid="uid://l6mb5twdspem" path="res://gpu_particles_3d.tscn" id="2_nf0gi"]
 [ext_resource type="PackedScene" uid="uid://b20odgibh8yck" path="res://Stats.tscn" id="2_tw1aa"]
+[ext_resource type="AudioStream" uid="uid://bahfetu3v5dy7" path="res://sounds/engine_generator_loop_04.wav" id="5_nbuad"]
+[ext_resource type="AudioStream" uid="uid://bsljd8csg2jp2" path="res://sounds/sci-fi_driod_robot_emote_beeps_03.wav" id="6_2vo8s"]
+[ext_resource type="AudioStream" uid="uid://04gn41xprohb" path="res://sounds/sci-fi_driod_robot_emote_beeps_07.wav" id="7_5wj1d"]
+[ext_resource type="AudioStream" uid="uid://cn1lt2hjjl40p" path="res://sounds/sci-fi_driod_robot_emote_neg_01.wav" id="7_rass2"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gnyut"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yt6jy"]
 
 [node name="Enemy" type="CharacterBody3D"]
 collision_layer = 4
@@ -20,7 +24,7 @@ transform = Transform3D(0.003, 0, 0, 0, 0.003, 0, 0, 0, 0.003, 0, 0, 0)
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(-0.778134, -1.0982e-07, -0.628099, 0, 1, -1.74846e-07, 0.628099, -1.36053e-07, -0.778134, 0.0129666, 1.00595, -0.0432952)
-shape = SubResource("CapsuleShape3D_gnyut")
+shape = SubResource("CapsuleShape3D_yt6jy")
 
 [node name="NavigationAgent3d" type="NavigationAgent3D" parent="."]
 path_desired_distance = 1.5
@@ -31,6 +35,21 @@ max_speed = 5.0
 
 [node name="Stats" parent="." instance=ExtResource("2_tw1aa")]
 max_HP = 5
+
+[node name="RobotSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_nbuad")
+autoplay = true
+max_polyphony = 50
+doppler_tracking = 2
+
+[node name="RobotSpeak" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_2vo8s")
+
+[node name="RobotSpeak3" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_rass2")
+
+[node name="RobotSpeak2" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_5wj1d")
 
 [connection signal="child_entered_tree" from="CollisionShape" to="." method="_on_collision_shape_child_entered_tree"]
 [connection signal="death_signal" from="Stats" to="." method="_on_stats_death_signal"]

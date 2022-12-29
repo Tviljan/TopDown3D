@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://oah241t1en8r"]
+[gd_scene load_steps=6 format=3 uid="uid://oah241t1en8r"]
 
-[ext_resource type="Texture2D" uid="uid://3ffh100dk06j" path="res://tile1.png" id="1_68dsi"]
+[ext_resource type="Texture2D" uid="uid://6ayr7tyfcrf5" path="res://iron_tile.jpg" id="1_n8nau"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_g8xev"]
 
@@ -14,20 +14,30 @@ noise = SubResource("FastNoiseLite_g8xev")
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.717647, 0.694118, 0.717647, 1)
 albedo_texture = SubResource("NoiseTexture2D_6nafr")
-orm_texture = ExtResource("1_68dsi")
 emission = Color(0.32549, 0.32549, 0.32549, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hulp8"]
+albedo_texture = ExtResource("1_n8nau")
+uv1_offset = Vector3(1, 0, 0)
 
 [node name="Ground" type="Node3D"]
 
-[node name="CsgBox3d5" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1.88322, -31.439)
-snap = 0.131
+[node name="CsgBox3d6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 3.23358, -4.87796)
 use_collision = true
-size = Vector3(184, 2, 184)
+size = Vector3(4, 8.82316, 36)
 material = SubResource("ORMMaterial3D_tgnjk")
 
+[node name="CsgBox3d5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1.88322, -31.439)
+snap = 0.0011
+calculate_tangents = false
+use_collision = true
+size = Vector3(184, 2, 184)
+material = SubResource("StandardMaterial3D_hulp8")
+
 [node name="CsgBox3d" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 4.2792, -43.3597)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 4.2792, -83.3597)
 use_collision = true
 size = Vector3(10, 8.82316, 8)
 material = SubResource("ORMMaterial3D_tgnjk")
@@ -46,6 +56,12 @@ material = SubResource("ORMMaterial3D_tgnjk")
 
 [node name="CsgBox3d4" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 4.11679, -2.43898)
+use_collision = true
+size = Vector3(4, 8.82316, 36)
+material = SubResource("ORMMaterial3D_tgnjk")
+
+[node name="CsgBox3d4" type="CSGBox3D" parent="CsgBox3d4"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -72, 1.11679, -63.439)
 use_collision = true
 size = Vector3(4, 8.82316, 36)
 material = SubResource("ORMMaterial3D_tgnjk")

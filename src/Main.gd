@@ -10,26 +10,21 @@ extends Node3D
 
 var spawn_points
 var points = 0
-
+var listen_to_input = false
 func _ready():
+	wait_for_input_timer = get_tree().create_timer(1.5)
+	listen_to_input = false
 	Player.connect("player_killed", _player_killed)	
 	spawn_points = get_tree().get_nodes_in_group("spawn_point")
 	
 var player_killed = false
 
 func _restart():
-	get_tree().call_group("enemy", "explode")
-	
-	await get_tree().create_timer(.5).timeout
-	player_killed = false
-	Player.killed = false
-	Player = null
-	Player = player.instantiate()
-	switch_camera()
-	timer.start()
+	get_tree().reload_current_scene()
 	
 func _player_killed():
 	if not player_killed:
+		set_process_input(false)
 		player_killed = true
 		switch_camera()
 		timer.stop()
@@ -53,17 +48,26 @@ func switch_camera():
 		_setGameOverVisibility(false)
 		DeathCamera.clear_current()
 		PlayerCamera.make_current()
-		
-func _setGameOverVisibility(visibile):
-	$Player/PlayerCamera/Points.visible = !visibile
-	$DeathCamera/GameOverText.visible = visibile
+
+var wait_for_input_timer
+func _setGameOverVisibility(visible):
+	$Player/PlayerCamera/Points.visible = !visible
+	$DeathCamera/GameOverText.visible = visible
 	$DeathCamera/GameOverPoints.text =  str(points)
-	$DeathCamera/GameOverPoints.visible = visibile	
-	$DeathCamera/AnyKeyText.visible = visibile	
+	$DeathCamera/GameOverPoints.visible = visible	
+	
+	if not visible:
+		$DeathCamera/AnyKeyText.visible = false
+	else:
+		if wait_for_input_timer.time_left <= 0.0:
+			wait_for_input_timer = get_tree().create_timer(1.5)
+			await wait_for_input_timer.timeout
+			$DeathCamera/AnyKeyText.visible = true
+			listen_to_input = true
 	
 func _physics_process(delta):
-	if Input.is_action_just_released("ui_page_down"):
-		pass #switch_camera()
+	if not listen_to_input:
+		return
 	
 	if Input.is_anything_pressed() and player_killed:
 		_restart()

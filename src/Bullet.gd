@@ -19,4 +19,5 @@ func _on_body_entered(body):
 
 	if body.has_node("Stats"):
 		var stats_node = body.find_child("Stats") as Stats
+		$Hit.play()
 		stats_node.take_hit(5)

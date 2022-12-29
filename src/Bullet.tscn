@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://byxb67dsyn7ei"]
+[gd_scene load_steps=9 format=3 uid="uid://byxb67dsyn7ei"]
 
 [ext_resource type="Script" path="res://Bullet.gd" id="1"]
+[ext_resource type="AudioStream" uid="uid://i6kkmuw3fdxf" path="res://sounds/metal_med_impact_02.wav" id="2_bc6od"]
 
 [sub_resource type="Gradient" id="Gradient_68cww"]
 
@@ -41,5 +42,8 @@ shape = SubResource("3")
 light_color = Color(1, 1, 0, 1)
 light_energy = 2.413
 light_size = 0.145
+
+[node name="Hit" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_bc6od")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

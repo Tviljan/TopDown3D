@@ -1,5 +1,14 @@
-res://Level.tscn
+res://Player.tscn
 res://Enemy.gd
 res://Player.gd
 res://sky.gdshader
+res://Gun.tscn
+res://Gun.gd
+res://Level.tscn
+res://Enemy.tscn
+res://Bullet.gd
+res://Bullet.tscn
+res://Explosion.tscn
+res://ExplosionMesh.tres
+res://Explosion.gd
 res://Main.gd
